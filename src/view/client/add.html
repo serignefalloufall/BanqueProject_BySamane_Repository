@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion Client</title>
+    <link rel="stylesheet" href="{$url_base}public/css/menu.css">
+
+        <link rel="stylesheet" href="{$url_base}public/css/gestionClient.css">
+        <link rel="stylesheet" href="{$url_base}public/css/gestionCompte.css">
+
+        <script src="{$url_base}public/js/gestionClient.js" type="text/javascript"></script>
+        <script src="{$url_base}public/js/gestionCompte.js" type="text/javascript"></script>
+        
+        
+</head>
+<body>
+    <nav>
+        <ul class="menu">
+            <li class="logo"><a href="#">La banque du peuple</a></li>
+            <li class="item"><a href="{$url_base}Client/add">Gestion des clients</a></li>
+            <li class="item"><a href="{$url_base}Compte/add">Gestion des comptes client</a></li>
+        </ul>
+    </nav>
+    
+    <div class="contenue">
+        <div class="error" id="message_error"></div>
+        <form action="{$url_base}Client/add" method="POST" class="formClient" id="formClient" onsubmit="return validationClient()">
+
+            <fieldset class="fieldset">
+                <legend class="legend">Gestion des clients:</legend>
+                <div class="itemFieldset">
+                
+                    <div>
+                        <label for="">Type de client:</label>
+                        <select name="type_client_id" id="type_client_id" onchange="verifTypeClient()">
+                            <option value="">Choisir un type de client</option>
+                            {if isset($listeTypeClient)}
+                            {if $listeTypeClient != null}
+                            {foreach from=$listeTypeClient item=l_typeClient}
+                                <option value="{$l_typeClient->getId()}">
+                                    {$l_typeClient->getLibelle()}
+                                </option>
+                            {/foreach}
+                            {else}
+							Liste vide
+						    {/if}
+					        {/if}
+                           
+                        </select>
+
+                        
+
+                    </div>
+            
+                    <div>
+                        <label for="">Nom</label>
+                        <input type="text" name="nom" id="nom" placeholder="Nom.....">
+                    </div>
+                    <div>
+                        <label for="">Prenom</label>
+                        <input type="text" name="prenom" id="prenom" placeholder="Prenom.....">
+                    </div>
+
+                    <div>
+                        <label for="">Adresse</label>
+                        <input type="text" name="adresse" id="adresse" placeholder="Adresse.....">
+                    </div>
+
+                    <div>
+                        <label for="">Telephone</label>
+                        <input type="text" name="tel" id="tel" placeholder="Telephone.....">
+                    </div>
+
+                    <div>
+                        <label for="">Email</label>
+                        <input type="text" name="email" id="email" placeholder="Email.....">
+                    </div>
+
+                    <div id="listeEmployeur" class="listeEmployeur">
+                        <label for="">Liste employeur:</label>
+                        <select name="employeur_id" id="employeur_id">
+                            <option value="">Votre entreprise</option>
+                            {if isset($listeEmployeur)}
+                            {if $listeEmployeur != null}
+
+                            {foreach from=$listeEmployeur item=l_emp}
+                                <option value="{$l_emp->getId()}">
+                                    {$l_emp->getNom_employeur()}
+                                </option>
+                            {/foreach}
+                            {else}
+							Liste vide
+						    {/if}
+					        {/if}
+                        </select>
+
+                    </div>
+
+                </div>
+
+            </fieldset> 
+            
+            <fieldset class="fieldset" id="emp">
+                <legend class="legend">Information supplémentaire:</legend>
+                <div class="itemFieldset">
+
+                    <div>
+                        <label for="">Salaire</label>
+                        <input type="text" name="salaire" id="salaire" value="" placeholder="Salaire....." placeholder="salaire">
+                    </div>
+
+                    <div>
+                        <label for="">Profession</label>
+                        <input type="text" name="profession" id="profession" placeholder="Profession....."> 
+                    </div>
+                    <div id="ninea">
+                        <label for="">Ninea</label>
+                        <input type="text" name="numIdentification" id="numIdentification" placeholder="Num identification.....">
+                    </div>
+
+                    <div id="raisonsocial">
+                        <label for="">Raison social</label>
+                        <input type="text" name="raisonSocial" id="raisonSocial" placeholder="Raison social.....">
+                    </div>
+
+                    <div id="nomemployeur">
+                        <label for="">Nom entreprise</label>
+                        <input type="text" name="nom_employeur" id="nom_employeur" placeholder="Nom entreprise.....">
+                    </div>
+                   
+                    <div id="adresseemployeur">
+                        <label for="">Adresse entreprise</label>
+                        <input type="text" name="adresse_employeur" id="adresse_employeur" placeholder="Adresse entreprise.....">
+                    </div>
+
+
+                </div>
+                <div class="btnSave">
+                    <input type="submit" name="btnAjouter" class="btn" value="Enregistrer"/>
+                </div>
+            </fieldset>    
+        </form>  
+    </div>
+    </body>
+</html>
