@@ -20,7 +20,7 @@ class CompteController extends Controller{
 	{
 		$comptedb = new CompteRepository();// l'objet $comptedb c pour acceder au methode qui se trouve class TestDB
 		$clientdb = new ClientRepository();
-		$data['listeClient'] = $clientdb->getListClient();
+		$data['listeClient'] = $clientdb->findAll();
 		$data['listeTypeCompte'] = $comptedb->getListTypeComte();
 		$data['listeAgence'] = $comptedb->getListAgence();
 

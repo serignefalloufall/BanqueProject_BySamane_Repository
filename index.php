@@ -12,7 +12,7 @@ VOUS ETES LIBRE DE TOUTE UTILISATION.
 
 require_once 'libs/autoload/Autoloader.class.php';
 require_once 'vendor/autoload.php';
-require_once "public/web/menu.html";
+//require_once "public/web/menu.html";
 use libs\system\Bootstrap;
 $bootstrap = new Bootstrap();
 

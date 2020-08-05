@@ -36,16 +36,16 @@
                         <select name="client_id" id="client_id" onchange="verifTypeClient()">
                             <option value="">Choisir client</option>
                             {if isset($listeClient)}
-                            {if $listeClient != null}
-                            {foreach from=$listeClient item=l_client}
-                                <option value="{$l_client->getId()}">
-                                    {$l_client->getPrenom()}
-                                    {$l_client->getNom()}
-                                </option>
-                            {/foreach}
-                            {else}
-							Liste vide
-						    {/if}
+                                {if $listeClient != null}
+                                    {foreach from=$listeClient item=l_client}
+                                        <option value="{$l_client->getId()}">
+                                            {$l_client->getPrenom()}
+                                            {$l_client->getNom()}
+                                        </option>
+                                    {/foreach}
+                                {else}
+                                    Liste vide
+						        {/if}
 					        {/if}
                            
                           

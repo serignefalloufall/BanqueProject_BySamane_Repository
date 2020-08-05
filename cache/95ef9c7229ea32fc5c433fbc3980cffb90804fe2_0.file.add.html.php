@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2020-08-04 18:25:43
+/* Smarty version 3.1.30, created on 2020-08-05 11:57:47
   from "/opt/lampp/htdocs/mes_projets/BanqueProjectBySamane/src/view/client/add.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_5f298c07f3a718_15215421',
+  'unifunc' => 'content_5f2a829b952ac5_39858807',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '95ef9c7229ea32fc5c433fbc3980cffb90804fe2' => 
     array (
       0 => '/opt/lampp/htdocs/mes_projets/BanqueProjectBySamane/src/view/client/add.html',
-      1 => 1596558342,
+      1 => 1596558507,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5f298c07f3a718_15215421 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f2a829b952ac5_39858807 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -48,6 +48,16 @@ public/js/gestionCompte.js" type="text/javascript"><?php echo '</script'; ?>
         
 </head>
 <body>
+    <nav>
+        <ul class="menu">
+            <li class="logo"><a href="#">La banque du peuple</a></li>
+            <li class="item"><a href="<?php echo $_smarty_tpl->tpl_vars['url_base']->value;?>
+Client/add">Gestion des clients</a></li>
+            <li class="item"><a href="<?php echo $_smarty_tpl->tpl_vars['url_base']->value;?>
+Compte/add">Gestion des comptes client</a></li>
+        </ul>
+    </nav>
+    
     <div class="contenue">
         <div class="error" id="message_error"></div>
         <form action="<?php echo $_smarty_tpl->tpl_vars['url_base']->value;?>

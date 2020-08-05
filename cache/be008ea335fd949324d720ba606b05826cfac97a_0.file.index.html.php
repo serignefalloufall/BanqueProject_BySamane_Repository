@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2020-08-04 18:28:50
+/* Smarty version 3.1.30, created on 2020-08-05 11:24:55
   from "/opt/lampp/htdocs/mes_projets/BanqueProjectBySamane/src/view/welcome/index.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_5f298cc26c6cb3_97689397',
+  'unifunc' => 'content_5f2a7ae730b204_67109029',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'be008ea335fd949324d720ba606b05826cfac97a' => 
     array (
       0 => '/opt/lampp/htdocs/mes_projets/BanqueProjectBySamane/src/view/welcome/index.html',
-      1 => 1596558493,
+      1 => 1596619489,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5f298cc26c6cb3_97689397 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f2a7ae730b204_67109029 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -95,6 +95,14 @@ class ClientRepository extends Model{
         ->getResult();
     }
 
+    public function findAll()
+    {
+      if($this->db != null)
+		{
+			return $this->db->getRepository('Client')->findAll();
+		}
+    }
+
     public function getClientById($id)
     {
 		if($this->db != null)
