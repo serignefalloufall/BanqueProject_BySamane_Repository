@@ -64,7 +64,7 @@ use Doctrine\Common\Collections\ArrayCollection;
          */
         private $comptes;
 
-          /**
+        /**
          * Many client have one typeclient. This is the owning side.
          * @ManyToOne(targetEntity="Typeclient", inversedBy="clients")
          * @JoinColumn(name="type_client_id", referencedColumnName="id")
