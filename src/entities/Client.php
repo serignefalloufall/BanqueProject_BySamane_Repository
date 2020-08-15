@@ -19,42 +19,42 @@ use Doctrine\Common\Collections\ArrayCollection;
         private $id;
 
          /** 
-         * @Column(type="string") 
+         * @Column(type="string",nullable=true) 
         */
         private $nom;
 
          /** 
-         * @Column(type="string") 
+         * @Column(type="string",nullable=true) 
         */
         private $prenom;
 
          /** 
-         * @Column(type="string") 
+         * @Column(type="string",nullable=true) 
         */
         private $adresse;
 
          /** 
-         * @Column(type="string") 
+         * @Column(type="string",nullable=true) 
         */
         private $tel;
 
          /** 
-         * @Column(type="string") 
+         * @Column(type="string",nullable=true) 
         */
         private $email;
 
          /** 
-         * @Column(type="string") 
+         * @Column(type="string",nullable=true) 
         */
         private $profession;
 
         /** 
-         * @Column(type="decimal") 
+         * @Column(type="decimal",nullable=true) 
         */
         private $salaire;
         
          /** 
-         * @Column(type="string") 
+         * @Column(type="string",nullable=true) 
         */
         private $password;
 
@@ -79,6 +79,10 @@ use Doctrine\Common\Collections\ArrayCollection;
         private $employeur_id;
       
 
+         /** 
+         * @Column(type="string",nullable=true,unique=true) 
+        */
+        private $cni;
 
          //Definition des constructeur
         public function __construct()
@@ -323,6 +327,26 @@ use Doctrine\Common\Collections\ArrayCollection;
         public function setComptes($comptes)
         {
                 $this->comptes = $comptes;
+
+                return $this;
+        }
+
+        /**
+         * Get the value of cni
+         */ 
+        public function getCni()
+        {
+                return $this->cni;
+        }
+
+        /**
+         * Set the value of cni
+         *
+         * @return  self
+         */ 
+        public function setCni($cni)
+        {
+                $this->cni = $cni;
 
                 return $this;
         }

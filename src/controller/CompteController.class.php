@@ -141,5 +141,22 @@ class CompteController extends Controller{
 	   
 	}  
 
+	public function rechercher($cni)
+	{
+		$cdb = new CompteRepository();
+		$client = $cdb->rechercher($cni);
+		$clt['success']=true;
+		$clt['data']=$client[0];
+		var_dump($clt);
+		echo json_decode($clt);
+		//var_dump($clt);
+		//echo json_decode($client[0]);
+		//json_decode($clt);
+
+		//$tabclient = (array) $cdb->rechercher($cni);
+		
+		//echo json_decode($tabclient);
+	}
+
 }
 ?>

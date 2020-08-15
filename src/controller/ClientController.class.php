@@ -6,24 +6,27 @@ ngorsecka@gmail.com
 PERFECTIONNEZ CE MODELE ET FAITES MOI UN RETOUR
 POUR TOUTE MODIFICATION VISANT A L'AMELIORER.
 VOUS ETES LIBRE DE TOUTE UTILISATION.
-===================================================*/ 
+===================================================*/
+
 use libs\system\Controller;
 use src\model\ClientRepository;
 use src\model\CompteRepository;
 
-class ClientController extends Controller{
-    public function __construct(){
-        parent::__construct();
-    }
-      
+class ClientController extends Controller
+{
+	public function __construct()
+	{
+		parent::__construct();
+	}
+
 	public function add()
 	{
-	
-		$clientdb = new ClientRepository();// l'objet $clientdb c pour acceder au methode qui se trouve class TestDB
+
+		$clientdb = new ClientRepository(); // l'objet $clientdb c pour acceder au methode qui se trouve class TestDB
 
 		$data['listeTypeClient'] = $clientdb->getListTypeClient();
 		$data['listeEmployeur'] = $clientdb->getListEmployeur();
-		
+
 		$data['ok'] = 0;
 
 		// foreach($listes as $r){
@@ -32,7 +35,7 @@ class ClientController extends Controller{
 		// }
 		// die;
 
-	  // $data['tclient'] = $clientdb->getTypeClientById(2);
+		// $data['tclient'] = $clientdb->getTypeClientById(2);
 
 		// $tclient = $data['tclient'];
 		// echo $tclient->getId()." "."<br/>";
@@ -41,19 +44,17 @@ class ClientController extends Controller{
 		// foreach( $listes as $r){
 		//     echo $r->getId()." "."<br/>";
 		//     echo $r->getNom_employeur()." "."<br/>";
-			
+
 		// }
 		// var_dump($data['tclient']);
 		// die;
-		if(isset($_POST['btnAjouter']))
-		{
+		if (isset($_POST['btnAjouter'])) {
 			extract($_POST);
-			$employeurObject = new Employeur();//ici on cree un objet 
+			$employeurObject = new Employeur(); //ici on cree un objet 
 
-			$clientObject = new Client();//ici on cree un objet 
+			$clientObject = new Client(); //ici on cree un objet 
 
-			if($_POST['type_client_id'] == '3')
-			{
+			if ($_POST['type_client_id'] == '3') {
 				//8 represente typeclient entreprise au niveau de la base
 
 				$employeurObject->setNumIdentification($numIdentification);
@@ -69,68 +70,59 @@ class ClientController extends Controller{
 				$data['ok'] = $resultat;
 
 				return $this->view->load("client/add", $data);
+			} else if ($_POST['type_client_id'] == '1') {
+				//6 represente typeclient salarie au niveau de la base
 
-			}else if($_POST['type_client_id'] == '1')
-			{
-				 //6 represente typeclient salarie au niveau de la base
+				$clientObject->setNom($nom);
 
-				 $clientObject->setNom($nom);
+				$clientObject->setPrenom($prenom);
 
-				 $clientObject->setPrenom($prenom);
+				$clientObject->setAdresse($adresse);
 
-				 $clientObject->setAdresse($adresse);
+				$clientObject->setTel($tel);
 
-				 $clientObject->setTel($tel);
+				$clientObject->setEmail($email);
 
-				 $clientObject->setEmail($email);
+				$clientObject->setSalaire($salaire);
 
-				 $clientObject->setSalaire($salaire);
-
-				 $clientObject->setProfession($profession);
+				$clientObject->setProfession($profession);
 				//ici je recupere l objet type client
-				 $typeclient = $clientdb->getTypeClientById($type_client_id);
+				$typeclient = $clientdb->getTypeClientById($type_client_id);
 
-				 $clientObject->setType_client_id($typeclient);
+				$clientObject->setType_client_id($typeclient);
 
-				  //ici je recupere l objet employeur
-				  $employeur = $clientdb->getTypeEmployeurById($employeur_id);
+				//ici je recupere l objet employeur
+				$employeur = $clientdb->getTypeEmployeurById($employeur_id);
 
-				 $clientObject->setEmployeur_id($employeur);
+				$clientObject->setEmployeur_id($employeur);
 
-				 $resultat = $clientdb->addClientSalarie($clientObject);
+				$resultat = $clientdb->addClientSalarie($clientObject);
 
-				 $data['ok'] = $resultat;
+				$data['ok'] = $resultat;
 
-				 return $this->view->load("client/add", $data);
+				return $this->view->load("client/add", $data);
+			} else if ($_POST['type_client_id'] == '2') {
+				//7 represente typeclient non salarie au niveau de la base
 
-			}else if($_POST['type_client_id'] == '2')
-			{
-				 //7 represente typeclient non salarie au niveau de la base
+				$clientObject->setNom($nom);
 
-				 $clientObject->setNom($nom);
+				$clientObject->setPrenom($prenom);
 
-				 $clientObject->setPrenom($prenom);
+				$clientObject->setAdresse($adresse);
 
-				 $clientObject->setAdresse($adresse);
+				$clientObject->setTel($tel);
 
-				 $clientObject->setTel($tel);
+				$clientObject->setEmail($email);
 
-				 $clientObject->setEmail($email);
+				$resultat = $clientdb->addClientNonSalarie($clientObject);
 
-				 $resultat = $clientdb->addClientNonSalarie($clientObject);
+				$data['ok'] = $resultat;
 
-				 $data['ok'] = $resultat;
-
-				 return $this->view->load("client/add", $data);
+				return $this->view->load("client/add", $data);
 			}
-		  
-		}else{
+		} else {
 
 			return $this->view->load("client/add", $data);
-
 		}
-	   
-	}  
-
+	}
 }
-?>

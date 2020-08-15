@@ -21,23 +21,23 @@ use Doctrine\ORM\Mapping as ORM;
         */
         private $num_compte;
         /** 
-         * @Column(type="string") 
+         * @Column(type="string",nullable=true) 
         */
         private $cle_rip;
         /** 
-         * @Column(type="decimal") 
+         * @Column(type="decimal",nullable=true) 
         */
         private $frais_ouverture;
         /** 
-         * @Column(type="decimal") 
+         * @Column(type="decimal",nullable=true) 
         */
         private $agio;
         /** 
-         * @Column(type="string") 
+         * @Column(type="string",nullable=true) 
         */
         private $date_ouverture;
         /** 
-         * @Column(type="string") 
+         * @Column(type="string",nullable=true) 
         */
         private $date_fermuture;
         
@@ -62,7 +62,7 @@ use Doctrine\ORM\Mapping as ORM;
          */ 
        private $agence_id;
 
-        /** Column(type="string") **/
+        /** Column(type="string",nullable=true) **/
         private $etat;
 
         public function __construct()

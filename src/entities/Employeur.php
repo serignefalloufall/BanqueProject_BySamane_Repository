@@ -20,19 +20,19 @@ use \Doctrine\Common\Collections\ArrayCollection;
         */
         private $id;
          /** 
-         * @Column(type="string") 
+         * @Column(type="string",nullable=true) 
         */
         private $numIdentification;
          /** 
-         * @Column(type="string") 
+         * @Column(type="string",nullable=true) 
         */
         private $raisonSocial;
          /** 
-         * @Column(type="string") 
+         * @Column(type="string",nullable=true) 
         */
         private $nom_employeur;
          /** 
-         * @Column(type="string") 
+         * @Column(type="string",nullable=true) 
         */
         private $adresse_employeur;
 

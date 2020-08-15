@@ -20,7 +20,7 @@ use Doctrine\Common\Collections\ArrayCollection;
         */
         private $id;
         /** 
-         * @Column(type="string") 
+         * @Column(type="string",nullable=true) 
         */
         private $nom;
 
