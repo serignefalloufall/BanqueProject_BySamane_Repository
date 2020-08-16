@@ -26,6 +26,7 @@ class ClientController extends Controller
 
 		$data['listeTypeClient'] = $clientdb->getListTypeClient();
 		$data['listeEmployeur'] = $clientdb->getListEmployeur();
+        $data['clients'] = $clientdb->findAll();
 
 		$data['ok'] = 0;
 
@@ -69,7 +70,7 @@ class ClientController extends Controller
 
 				$data['ok'] = $resultat;
 
-				return $this->view->load("client/add", $data);
+				return $this->view->load("client/liste", $data);
 			} else if ($_POST['type_client_id'] == '1') {
 				//6 represente typeclient salarie au niveau de la base
 
@@ -100,7 +101,7 @@ class ClientController extends Controller
 
 				$data['ok'] = $resultat;
 
-				return $this->view->load("client/add", $data);
+				return $this->view->load("client/liste", $data);
 			} else if ($_POST['type_client_id'] == '2') {
 				//7 represente typeclient non salarie au niveau de la base
 
@@ -118,11 +119,71 @@ class ClientController extends Controller
 
 				$data['ok'] = $resultat;
 
-				return $this->view->load("client/add", $data);
+				return $this->view->load("client/liste", $data);
 			}
 		} else {
 
 			return $this->view->load("client/add", $data);
 		}
 	}
+
+
+	public function liste()
+    {
+        $cdb = new ClientRepository();
+
+        $data['clients'] = $cdb->findAll();
+        return $this->view->load("client/liste", $data);
+    }
+
+	public function delete($id)
+    {
+
+        $clientdb = new ClientRepository();
+        $clientdb->deleteClient($id);
+        return $this->liste();
+	}
+	
+	public function edit($id)
+    {
+
+        $clientdb = new ClientRepository();
+
+        $data['client'] = $clientdb->getClient($id);
+        //var_dump($tdb->getTest($id));
+        return $this->view->load("client/edit", $data);
+	}
+	
+	public function update()
+    {
+		$clientdb = new ClientRepository();
+		
+        if (isset($_POST['modifier'])) {
+			extract($_POST);
+			//var_dump($_POST);
+			if (!empty($id)) {
+
+				$clientObject = new Client();
+
+				$clientObject->setNom($nom);
+
+				$clientObject->setPrenom($prenom);
+
+				$clientObject->setAdresse($adresse);
+
+				$clientObject->setTel($tel);
+
+				$clientObject->setEmail($email);
+
+				$ok = $clientdb->updateClient($clientObject);
+				
+            }
+            
+        }
+
+        return $this->liste();
+    }
+	
+
+
 }

@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="{$url_base}public/css/menu.css" />
 
     <link rel="stylesheet" href="{$url_base}public/css/gestionClient.css" />
+        <link rel="stylesheet" href="{$url_base}public/css/gestionClient.css" />
+
     <link rel="stylesheet" href="{$url_base}public/css/gestionCompte.css" />
 
     <script
@@ -28,6 +30,10 @@
         <li class="item">
           <a href="{$url_base}Compte/add">Gestion des comptes client</a>
         </li>
+        <li class="item">
+          <a href="{$url_base}Client/liste">Liste clients</a>
+        </li>
+
       </ul>
     </nav>
     {if isset($ok)} {if $ok != 0}

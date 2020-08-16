@@ -7,116 +7,138 @@ PERFECTIONNEZ CE MODELE ET FAITES MOI UN RETOUR
 POUR TOUTE MODIFICATION VISANT A L'AMELIORER.
 VOUS ETES LIBRE DE TOUTE UTILISATION.
 ===================================================*/
-namespace src\model; 
-use libs\system\Model; 
-	
-class ClientRepository extends Model{
-	
-	/**
-	 * Methods with DQL (Doctrine Query Language) 
-	 */
-	public function __construct(){
-		parent::__construct();
-	}
 
-	public function addEmployeur($employeur)
-    {
-        $this->db->persist($employeur);
-        $this->db->flush();
-        return $employeur->getId();
-    }
+namespace src\model;
 
-    public function addClientSalarie($client)
-    {
-        $this->db->persist($client);
-        $this->db->flush();
-        return $client->getId();
-    }
+use libs\system\Model;
 
-    public function addClientNonSalarie($client)
-    {
-        $this->db->persist($client);
-        $this->db->flush();
-        return $client->getId();
-    }
-    
-    public function getListTypeClient()
-    {
-      if($this->db != null)
-      {
+class ClientRepository extends Model
+{
+
+  /**
+   * Methods with DQL (Doctrine Query Language) 
+   */
+  public function __construct()
+  {
+    parent::__construct();
+  }
+
+  public function addEmployeur($employeur)
+  {
+    $this->db->persist($employeur);
+    $this->db->flush();
+    return $employeur->getId();
+  }
+
+  public function addClientSalarie($client)
+  {
+    $this->db->persist($client);
+    $this->db->flush();
+    return $client->getId();
+  }
+
+  public function addClientNonSalarie($client)
+  {
+    $this->db->persist($client);
+    $this->db->flush();
+    return $client->getId();
+  }
+
+  public function getListTypeClient()
+  {
+    if ($this->db != null) {
       $query = $this->db->createQuery("SELECT tc FROM Typeclient tc");
       return $l_typeclients = $query->getResult();
-      }
-       
-       
     }
+  }
 
-    public function getListEmployeur()
-    {
-      if($this->db != null)
-      {
-        $query = $this->db->createQuery("SELECT e FROM Employeur e");
-        return $employeurs = $query->getResult();
-      }
-       
+  public function getListEmployeur()
+  {
+    if ($this->db != null) {
+      $query = $this->db->createQuery("SELECT e FROM Employeur e");
+      return $employeurs = $query->getResult();
     }
+  }
 
-    public function getTypeClientById($id){
-		if($this->db != null)
-		{
-			$tclient = $this->db->find('Typeclient', $id);
-			if($tclient != null)
-			{
+  public function getTypeClientById($id)
+  {
+    if ($this->db != null) {
+      $tclient = $this->db->find('Typeclient', $id);
+      if ($tclient != null) {
         return $tclient;
-			}else {
-				die("Objet ".$id." does not existe!");
-			}
-		}
+      } else {
+        die("Objet " . $id . " does not existe!");
+      }
     }
-    
-    public function getTypeEmployeurById($id)
-    {
-		if($this->db != null)
-		{
-			$emp = $this->db->find('Employeur', $id);
-			if($emp != null)
-			{
-                return $emp;
-			}else {
-				die("Objet ".$id." does not existe!");
-			}
-		}
-    }
-    
-    function getListClient()
-    {
-        return $this->db
-        ->createQuery("SELECT cli FROM Client cli")
-        ->getResult();
-    }
+  }
 
-    public function findAll()
-    {
-      if($this->db != null)
-		{
-			return $this->db->getRepository('Client')->findAll();
-		}
+  public function getTypeEmployeurById($id)
+  {
+    if ($this->db != null) {
+      $emp = $this->db->find('Employeur', $id);
+      if ($emp != null) {
+        return $emp;
+      } else {
+        die("Objet " . $id . " does not existe!");
+      }
     }
+  }
 
-    public function getClientById($id)
-    {
-		if($this->db != null)
-		{
-			$cli = $this->db->find('Client', $id);
-			if($cli != null)
-			{
-                return $cli;
-			}else {
-				die("Objet ".$id." does not existe!");
-			}
-		}
+  function getListClient()
+  {
+    return $this->db
+      ->createQuery("SELECT cli FROM Client cli")
+      ->getResult();
+  }
+
+  public function findAll()
+  {
+    if ($this->db != null) {
+      return $this->db->getRepository('Client')->findAll();
     }
+  }
 
-	
+  public function getClientById($id)
+  {
+    if ($this->db != null) {
+      $cli = $this->db->find('Client', $id);
+      if ($cli != null) {
+        return $cli;
+      } else {
+        die("Objet " . $id . " does not existe!");
+      }
+    }
+  }
+
+  public function deleteClient($id)
+  {
+    if ($this->db != null) {
+      $cli = $this->db->find('Client', $id);
+      if ($cli != null) {
+        $this->db->remove($cli);
+        $this->db->flush();
+      } else {
+        die("Objet " . $id . " does not existe!");
+      }
+    }
+  }
+
+  public function getClient($id)
+  {
+    if ($this->db != null) {
+      return $this->db->getRepository('Client')->find(array('id' => $id));
+    }
+  }
+
+  
+  public function updateClient($client)
+  {
+    $this->db->persist($client);
+    $this->db->flush();
+    return 1;
+  }
+
+
+
 	
 }

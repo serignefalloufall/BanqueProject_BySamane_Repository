@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30, created on 2020-08-15 22:37:53
+/* Smarty version 3.1.30, created on 2020-08-16 17:10:46
   from "/opt/lampp/htdocs/mes_projets/BanqueProjectBySamane/src/view/client/add.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30',
-  'unifunc' => 'content_5f3847a1d84c52_99532088',
+  'unifunc' => 'content_5f394c76649402_94458015',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '95ef9c7229ea32fc5c433fbc3980cffb90804fe2' => 
     array (
       0 => '/opt/lampp/htdocs/mes_projets/BanqueProjectBySamane/src/view/client/add.html',
-      1 => 1597523865,
+      1 => 1597590372,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5f3847a1d84c52_99532088 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5f394c76649402_94458015 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,6 +33,9 @@ public/css/menu.css" />
 
     <link rel="stylesheet" href="<?php echo $_smarty_tpl->tpl_vars['url_base']->value;?>
 public/css/gestionClient.css" />
+        <link rel="stylesheet" href="<?php echo $_smarty_tpl->tpl_vars['url_base']->value;?>
+public/css/gestionClient.css" />
+
     <link rel="stylesheet" href="<?php echo $_smarty_tpl->tpl_vars['url_base']->value;?>
 public/css/gestionCompte.css" />
 
@@ -63,6 +66,11 @@ Client/add">Gestion des clients</a>
           <a href="<?php echo $_smarty_tpl->tpl_vars['url_base']->value;?>
 Compte/add">Gestion des comptes client</a>
         </li>
+        <li class="item">
+          <a href="<?php echo $_smarty_tpl->tpl_vars['url_base']->value;?>
+Client/liste">Liste clients</a>
+        </li>
+
       </ul>
     </nav>
     <?php if (isset($_smarty_tpl->tpl_vars['ok']->value)) {?> <?php if ($_smarty_tpl->tpl_vars['ok']->value != 0) {?>
@@ -71,7 +79,8 @@ Compte/add">Gestion des comptes client</a>
     <divstyle="margin-top: 50px; font-size: 35px; color: red; margin-left: 130px;">
       Erreur d'insertion
     </div>
-    <?php }?> <?php }?>
+    <?php }?>
+    <?php }?>
 
     <div class="contenue">
       <div class="error" id="message_error"></div>

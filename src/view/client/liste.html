@@ -1,70 +1,98 @@
-<html>
-	<head>
-		<meta charset="UTF-8">
-		<title>List</title>
-		<!-- l'appel de {$url_base} vous permet de recupérer le chemin de votre site web  -->
-		<link type="text/css" rel="stylesheet" href="{$url_base}public/css/bootstrap.min.css"/>
-		<link type="text/css" rel="stylesheet" href="{$url_base}public/css/samane.css"/>
-		<style>
-			h1{ 
-				color: #40007d;
-			}
-		</style>
-	</head>
-	<body>
-		<img src="{$url_base}public/image/logo.jpg" class="resize" />
-		<div class="nav navbar navbar-default navbar-fixed-top">
-			<ul class="nav navbar-nav">
-				<!-- l'appel de {$url_base} vous permet de recupérer le chemin de votre site web  -->
-				<li><a href="{$url_base}">Accueil</a></li>
-				<li><a href="{$url_base}Test/index">Menu test page </a></li>
-				<li><a href="{$url_base}Test/getId/1">Menu test get id page </a></li>
-				<li><a href="{$url_base}Test/liste">Menu test list page </a></li>
-				<li><a href="{$url_base}Upload/index">upload file </a></li>
-				<li><a href="{$url_base}PdfGenerator/generate">Samane Generate pdf file </a></li>
-				<li><a href="{$url_base}ExcelGenerator/generate">Samane Generate excel file </a></li>
-				<li><a href="{$url_base}ExcelGenerator/read">Samane read excel file </a></li>
-				<li><a href="{$url_base}Email/sendMail">Samane Mailing </a></li>
-			</ul>
-		</div>
-		<div class="col-md-8 col-xs-12 col-md-offset-2" style="margin-top:150px;">
-			<div class="panel panel-info">
-				<div class="panel-heading">BIENVENUE A VOTRE MODELE MVC</div>
-				<div class="panel-body">
-					<div class="alert alert-success" style="font-size:18px; text-align:justify;">
-						Merci, l'équipe samanemvc vous remercie :) : 
-						je vous ai préparé un CRUD qui marche. Lisez la documentation.
-						<br/>Et surtout noubliez pas de configurer votre base de données : ou? Dans le dossier config
-						puis éditez le fichier database.php. Mettez à on l'etat de la base! Bon code!!!!  :)
-					</div>
-					{if isset($tests)}
-						{if $tests != null}
-							<table class="table table-bordered table-stripped">
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gestion Client</title>
+    <link rel="stylesheet" href="{$url_base}public/css/menu.css" />
+
+    <link rel="stylesheet" href="{$url_base}public/css/gestionClient.css" />
+        <link rel="stylesheet" href="{$url_base}public/css/gestionClient.css" />
+
+	<link rel="stylesheet" href="{$url_base}public/css/gestionCompte.css" />
+	<link rel="stylesheet" href="{$url_base}public/css/bootstra.css" />
+
+
+    <script
+      src="{$url_base}public/js/gestionClient.js"
+      type="text/javascript"
+    ></script>
+    <script
+      src="{$url_base}public/js/gestionCompte.js"
+      type="text/javascript"
+    ></script>
+  </head>
+  <body>
+    <nav>
+      <ul class="menu">
+        <li class="logo"><a href="#">La banque du peuple</a></li>
+        <li class="item">
+          <a href="{$url_base}Client/add">Gestion des clients</a>
+        </li>
+        <li class="item">
+          <a href="{$url_base}Compte/add">Gestion des comptes client</a>
+        </li>
+        <li class="item">
+          <a href="{$url_base}Client/liste">Liste clients</a>
+        </li>
+
+      </ul>
+    </nav>
+    <div class="contenue">
+      <div class="error" id="message_error"></div>
+      <form
+        action="{$url_base}Client/add"
+        method="POST"
+        class="formClient"
+        id="formClient"
+        onsubmit="return validationClient()"
+      >
+        <fieldset class="fieldset">
+          <legend class="legend">Liste des clients</legend>
+          <div class="itemFieldset">
+			<div>
+					
+				{if isset($clients)}
+					{if $clients != null}
+						<table class="table">
+							<tr>
+								<th>Identifiant</th>
+								<th>Nom</th>
+								<th>Prenom</th>
+								<th>Adresse</th>
+								<th>Telephone</th>
+								<th>Email</th>
+								<th>Profession</th>
+								<th>Action</th>
+								<th>Action</th>
+							</tr>
+							{foreach from=$clients item=client}
 								<tr>
-									<th>Identifiant</th>
-									<th>Valeur 1</th>
-									<th>Valeur 2</th>
-									<th>Action</th>
-									<th>Action</th>
+									<td>{$client->getId()}</td>
+									<td>{$client->getNom()}</td>
+									<td>{$client->getPrenom()}</td>
+									<td>{$client->getAdresse()}</td>
+									<td>{$client->getTel()}</td>
+									<td>{$client->getEmail()}</td>
+									<td>{$client->getProfession()}</td>
+									<td><a class="link" href="{$url_base}Client/delete/{$client->getId()}">Supprimer</a></td>
+									<td><a class="link" href="{$url_base}Client/edit/{$client->getId()}">Editer</a></td>
 								</tr>
-								{foreach from=$tests item=test}
-									<tr>
-										<td>{$test->getId()}</td>
-										<td>{$test->getValeur1()}</td>
-										<td>{$test->getValeur2()}</td>
-										<td><a href="{$url_base}Test/delete/{$test->getId()}">Supprimer</a></td>
-										<td><a href="{$url_base}Test/edit/{$test->getId()}">Editer</a></td>
-									</tr>
-								{/foreach}
-							</table>
-						{else}
-							Liste vide
-						{/if}
+							{/foreach}
+						</table>
+					{else}
+						Liste vide
 					{/if}
-				</div>
-				<a href="{$url_base}Test/add">Ajout d'un test</a>
+				{/if}
 			</div>
-		</div>
-		
-	</body>
+		  </div>
+		  <button class="btna">
+			<a class="link" href="{$url_base}Client/add">Nouveau client</a>
+		</button>	
+        </fieldset>
+
+       
+      </form>
+    </div>
+  </body>
 </html>
